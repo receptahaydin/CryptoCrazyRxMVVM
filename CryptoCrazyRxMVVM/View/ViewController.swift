@@ -9,9 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     let cryptoVM = CryptoViewModel()
     let disposeBag = DisposeBag()
@@ -19,11 +20,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
         setupBindings()
         cryptoVM.requestData()
     }
     
     private func setupBindings() {
+        cryptoVM
+            .loading
+            .bind(to: self.loadingIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
         cryptoVM
             .error
             .observe(on: MainScheduler.asyncInstance)
@@ -32,6 +39,7 @@ class ViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        /*
         cryptoVM
             .cryptos
             .observe(on: MainScheduler.asyncInstance)
@@ -40,9 +48,19 @@ class ViewController: UIViewController {
                 self.tableView.reloadData()
             }
             .disposed(by: disposeBag)
+         */
+        
+        cryptoVM
+            .cryptos
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(to: tableView.rx.items(cellIdentifier: "cryptoCell", cellType: CryptoTableViewCell.self)) { row, item, cell in
+                cell.item = item
+            }
+            .disposed(by: disposeBag)
     }
 }
 
+/*
 extension ViewController: UITableViewDelegate {
     
 }
@@ -61,3 +79,4 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
 }
+*/
