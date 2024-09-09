@@ -6,14 +6,40 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var cryptoList = [Crypto]()
     
+    let cryptoVM = CryptoViewModel()
+    let disposeBag = DisposeBag()
+    var cryptoList = [Crypto]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBindings()
+        cryptoVM.requestData()
+    }
+    
+    private func setupBindings() {
+        cryptoVM
+            .error
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { errorString in
+                print(errorString)
+            }
+            .disposed(by: disposeBag)
+        
+        cryptoVM
+            .cryptos
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { cryptos in
+                self.cryptoList = cryptos
+                self.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
     }
 }
 
