@@ -15,6 +15,7 @@
 		DC5722B42C8EEEC80011D495 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5722B22C8EEEC80011D495 /* LaunchScreen.storyboard */; };
 		DC5722C02C8EF2FD0011D495 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5722BF2C8EF2FD0011D495 /* Crypto.swift */; };
 		DC5722C22C8F0F7F0011D495 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5722C12C8F0F7F0011D495 /* WebService.swift */; };
+		DC5722C42C8F1A110011D495 /* CryptoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5722C32C8F1A110011D495 /* CryptoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DC5722B52C8EEEC80011D495 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC5722BF2C8EF2FD0011D495 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		DC5722C12C8F0F7F0011D495 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		DC5722C32C8F1A110011D495 /* CryptoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		DC5722BB2C8EF24E0011D495 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DC5722C32C8F1A110011D495 /* CryptoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				DC5722A82C8EEEC70011D495 /* AppDelegate.swift in Sources */,
 				DC5722C22C8F0F7F0011D495 /* WebService.swift in Sources */,
 				DC5722AA2C8EEEC70011D495 /* SceneDelegate.swift in Sources */,
+				DC5722C42C8F1A110011D495 /* CryptoViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
